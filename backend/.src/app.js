@@ -1,14 +1,19 @@
 const express = require("express");
 const cors = require("cors");
+const { errors } = require("celebrate"); //validacao
 const routes = require("./routes");
+
 
 const app = express();
 //antes de todas as requisições, express vai no corpo da requisição e converter o json em um objeto JavaScript
 app.use(cors());
 app.use(express.json());
 app.use(routes);
+app.use(errors()); //validacao
 
-app.listen(3333); //a aplicação vai ouvir a porta 3333 quando acessar localhost
+// app.listen(3333); a aplicação vai ouvir a porta 3333 quando acessar localhost
+
+module.exports = app;
 
 /**
  * Rota    ok
